@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++){
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        Log.d("JsonArray", "onResponse" + ""
+                        Log.d("JsonArray", "onResponse: " + ""
                                 +jsonObject.getString("id") + ""
                                 +jsonObject.getString("title")
 
