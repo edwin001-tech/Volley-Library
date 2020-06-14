@@ -23,14 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
     //https://jsonplaceholder.cypress.io/todos/1
 
-    private RequestQueue requestQueue;
+    //private RequestQueue requestQueue;
+
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = MySingleton.getInstance(this.getApplicationContext())
+                .getRequestQueue();
+
+        //requestQueue = Volley.newRequestQueue(this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
         "https://jsonplaceholder.cypress.io/todos/1", null,
@@ -81,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //requestQueue.add(jsonObjectRequest);
         requestQueue.add(jsonArrayRequest);
+        //requestQueue.add(jsonObjectRequest);
+        //requestQueue.add(jsonArrayRequest);
     }
 }
