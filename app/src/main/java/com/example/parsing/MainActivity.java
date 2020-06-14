@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+
 public class MainActivity extends AppCompatActivity {
 
     //https://jsonplaceholder.cypress.io/todos/1
@@ -55,7 +57,22 @@ public class MainActivity extends AppCompatActivity {
                 "https://jsonplaceholder.typicode.com/todos", null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("JsonArray", "onResponse" +response);
+
+
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        Log.d("JsonArray", "onResponse" + ""
+                                +jsonObject.getString("id") + ""
+                                +jsonObject.getString("title")
+
+                        );
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
 
             }
         }, new Response.ErrorListener() {
